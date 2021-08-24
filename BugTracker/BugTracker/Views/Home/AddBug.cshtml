@@ -1,0 +1,70 @@
+﻿@model BugTracker.Models.TicketModel
+
+@{
+    ViewData["Title"] = "Add new ticket";
+}
+
+<div class="pt-4">
+    <h3>Add new ticket</h3>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddBug">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group pt-3">
+                <label asp-for="TicketId" class="control-label"></label>
+                <input asp-for="TicketId" class="form-control" />
+                <span asp-validation-for="TicketId" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3">
+                <label asp-for="BugName" class="control-label"></label>
+                <input asp-for="BugName" class="form-control" />
+                <span asp-validation-for="BugName" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3">
+                <label asp-for="Reporter" class="control-label"></label>
+                <input asp-for="Reporter" class="form-control" />
+                <span asp-validation-for="Reporter" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3">
+                <label asp-for="Created" class="control-label"></label>
+                <input asp-for="Created" class="form-control" />
+                <span asp-validation-for="Created" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3">
+                <label asp-for="Due" class="control-label"></label>
+                <input asp-for="Due" class="form-control" />
+                <span asp-validation-for="Due" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3">
+                <label asp-for="Severity" class="control-label"></label>
+                <input asp-for="Severity" class="form-control" />
+                <span asp-validation-for="Severity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group pt-3 pb-3">
+                <div class="position-relative pt-3 pb-3">
+                    <div class="position-absolute top-0 start-0">
+                        <input type="submit" value="Create new ticket" class="btn btn-primary" />
+                    </div>
+                    <div class="position-absolute top-0 end-0">
+                        <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

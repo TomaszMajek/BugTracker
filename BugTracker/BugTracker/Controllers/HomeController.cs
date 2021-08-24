@@ -33,5 +33,11 @@ namespace BugTracker.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult AddBug()
+        {
+            ViewBag.Message = "Add Bug";
+            return View();
+        }
     }
 }
