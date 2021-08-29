@@ -8,6 +8,7 @@
     <h3>Add new ticket</h3>
 </div>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AddBug">
@@ -15,14 +16,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group pt-3">
-                <label asp-for="TicketId" class="control-label"></label>
-                <input asp-for="TicketId" class="form-control" />
-                <span asp-validation-for="TicketId" class="text-danger"></span>
-            </div>
-            <div class="form-group pt-3">
                 <label asp-for="BugName" class="control-label"></label>
                 <input asp-for="BugName" class="form-control" />
                 <span asp-validation-for="BugName" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group pt-3">
                 <label asp-for="Reporter" class="control-label"></label>
@@ -35,13 +36,20 @@
                 <span asp-validation-for="Created" class="text-danger"></span>
             </div>
             <div class="form-group pt-3">
-                <label asp-for="Due" class="control-label"></label>
-                <input asp-for="Due" class="form-control" />
-                <span asp-validation-for="Due" class="text-danger"></span>
+                <label asp-for="Deadline" class="control-label"></label>
+                <input asp-for="Deadline" class="form-control" />
+                <span asp-validation-for="Deadline" class="text-danger"></span>
             </div>
             <div class="form-group pt-3">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                <select asp-for="Status" class="form-select">
+                    <option selected value="">Choose status</option>
+                    <option value="Open">Open</option>
+                    <option value="In progress">In progress</option>
+                    <option value="To do">To do</option>
+                    <option value="To be tested">To be tested</option>
+                    <option value="Closed">Closed</option>
+                </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group pt-3">
@@ -53,10 +61,10 @@
             <div class="form-group pt-3 pb-3">
                 <div class="position-relative pt-3 pb-3">
                     <div class="position-absolute top-0 start-0">
-                        <input type="submit" value="Create new ticket" class="btn btn-primary" />
+                        <a class="btn btn-secondary" asp-action="Index">Cancel</a>
                     </div>
                     <div class="position-absolute top-0 end-0">
-                        <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+                        <input type="submit" value="Create new ticket" class="btn btn-primary" />
                     </div>
                 </div>
             </div>

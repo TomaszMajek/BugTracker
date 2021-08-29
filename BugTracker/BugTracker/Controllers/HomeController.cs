@@ -1,4 +1,5 @@
-﻿ using BugTracker.Models;
+﻿using BugTracker.BusinessLogic;
+using BugTracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -34,9 +35,53 @@ namespace BugTracker.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public ActionResult ViewTickets()
+        {
+            ViewBag.Message = "Tickets List";
+            var data = TicketProcessor.LoadTickets();
+            List<TicketModel> tickets = new List<TicketModel>();
+
+            foreach (var row in data)
+            {
+                tickets.Add(new TicketModel
+                {
+                    BugName = row.BugName,
+                    Description = row.Description,
+                    Reporter = row.Reporter,
+                    Created = row.Created,
+                    Deadline = row.Deadline,
+                    Status = row.Status,
+                    Severity = row.Severity
+                });
+            }
+
+            return View(tickets);
+        }
+
+        // actually should be AddTicket
         public IActionResult AddBug()
         {
             ViewBag.Message = "Add Bug";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddBug(TicketModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = TicketProcessor.CreateTicket(
+                    model.BugName, 
+                    model.Description, 
+                    model.Reporter, 
+                    model.Created, 
+                    model.Deadline, 
+                    model.Status,
+                    model.Severity);
+
+                return RedirectToAction("Index"); 
+            }
+
             return View();
         }
     }
