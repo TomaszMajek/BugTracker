@@ -40,14 +40,15 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Reporter)
                 </th>
+                @* model has different order! *@
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Created)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Deadline)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Severity)
@@ -60,37 +61,45 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BugName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Reporter)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Created)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Deadline)
-                    </td>
-                    <td>
+                
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BugName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reporter)
+                </td>
+                @* model has different order! *@
+                <td>
+                    <span class="color_change_status">
                         @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
+                    </span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    <div class="remove_seconds" id="removeId">
+                        @Html.DisplayFor(modelItem => item.Deadline)
+                    </div>
+                </td>
+                <td>
+                    <span class="color_change_severity">
                         @Html.DisplayFor(modelItem => item.Severity)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
+                    </span>
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
             }
         </tbody>
     </table>

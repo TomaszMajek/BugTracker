@@ -27,8 +27,8 @@ namespace BugTracker.Models
         [Required(ErrorMessage = "You need to write by when the problem should be solved.")]
         public DateTime? Deadline { get; set; }
 
-        [Display(Name = "Status / Priority")]
-        [Required(ErrorMessage = "You must select status. Is it in progress already or maybe almost solved?")]
+        [Display(Name = "Status")]
+        [Required(ErrorMessage = "You must select status. Is the problem in progress already or maybe almost solved?")]
         public string Status { get; set; }
 
         [Display(Name = "Severity")]
