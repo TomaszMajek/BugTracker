@@ -28,9 +28,9 @@
     <table class="table table-hover table-borderless">
         <thead class="table-light">
             <tr>
-                <th>
+                @*<th>
                     #
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.BugName)
                 </th>
@@ -63,9 +63,9 @@
             {
                 
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Id)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.BugName)
                 </td>
@@ -95,9 +95,19 @@
                     </span>
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <div class="btn-group" role="group" aria-label="...">
+                        <form method="post" asp-action="EditTicket">
+                            <input type="hidden" name="Id" asp-for="@item.Id" />
+                            <input type="submit" value="Edit" class="btn btn-outline-secondary btn-sm py-0" style="font-size: 0.75em;"/>
+                        </form>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <form method="post" asp-action="DeleteBug">
+                            <input type="hidden" name="Id" asp-for="@item.Id" />
+                            <input type="submit" value="Delete" class="btn btn-danger btn-sm py-0" style="font-size: 0.75em;" />
+                        </form>
+                    </div>
+
                 </td>
             </tr>
             }

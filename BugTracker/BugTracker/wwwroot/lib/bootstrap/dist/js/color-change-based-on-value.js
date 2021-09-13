@@ -41,7 +41,7 @@ function statusColor() {
 }
 
 
-// Removes seconds from 'Deadline' column in /Tickets tab
+// Removes seconds (useless) from 'Deadline' column in /Tickets tab
 function removeSeconds() {
     var el_2 = document.querySelectorAll(".remove_seconds");
 

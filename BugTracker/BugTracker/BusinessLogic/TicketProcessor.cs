@@ -30,6 +30,15 @@ namespace BugTracker.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
+        public static int DeleteTicket(int Id)
+        {
+            int data = Id;
+
+            string sql = $"delete from dbo.Ticket where Id = {data}";
+
+            return SqlDataAccess.RemoveData(sql, data);
+        }
+
         public static List<TicketModel> LoadTickets()
         {
             string sql = @"select Id, BugName, Description, Reporter, Created, Deadline, Status, Severity

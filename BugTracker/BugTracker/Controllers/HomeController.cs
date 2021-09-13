@@ -45,6 +45,7 @@ namespace BugTracker.Controllers
             {
                 tickets.Add(new TicketModel
                 {
+                    Id = row.Id,
                     BugName = row.BugName,
                     Description = row.Description,
                     Reporter = row.Reporter,
@@ -61,7 +62,7 @@ namespace BugTracker.Controllers
         // actually should be AddTicket
         public IActionResult AddBug()
         {
-            ViewBag.Message = "Add Bug";
+            ViewBag.Message = "Add Ticket";
             return View();
         }
 
@@ -79,10 +80,19 @@ namespace BugTracker.Controllers
                     model.Status,
                     model.Severity);
 
-                return RedirectToAction("Index"); 
+                return RedirectToAction("ViewTickets"); 
             }
 
             return View();
         }
+
+        [HttpPost]
+        public IActionResult DeleteBug(int Id)
+        {
+            TicketProcessor.DeleteTicket(Id);
+
+            return RedirectToAction("ViewTickets");
+        }
     }
 }
+ 

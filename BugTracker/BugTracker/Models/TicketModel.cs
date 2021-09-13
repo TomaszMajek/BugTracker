@@ -8,6 +8,7 @@ namespace BugTracker.Models
 {
     public partial class TicketModel
     {
+        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Bug Name")]
