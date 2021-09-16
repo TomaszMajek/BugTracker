@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using BugTracker.Models;
 
 namespace BugTracker.DataAccess
 {
@@ -49,6 +50,14 @@ namespace BugTracker.DataAccess
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
                 return cnn.Execute(sql, data);
+            }
+        }
+
+        public static List<T> FindData<T>(string sql)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql).ToList();
             }
         }
     }

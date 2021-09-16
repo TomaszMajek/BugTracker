@@ -30,6 +30,16 @@ namespace BugTracker.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
+
+        public static List<TicketModel> LoadTickets()
+        {
+            string sql = @"select Id, BugName, Description, Reporter, Created, Deadline, Status, Severity
+                            from dbo.Ticket;";
+
+            return SqlDataAccess.LoadData<TicketModel>(sql);
+        }
+
+
         public static int DeleteTicket(int Id)
         {
             int data = Id;
@@ -39,12 +49,14 @@ namespace BugTracker.BusinessLogic
             return SqlDataAccess.RemoveData(sql, data);
         }
 
-        public static List<TicketModel> LoadTickets()
-        {
-            string sql = @"select Id, BugName, Description, Reporter, Created, Deadline, Status, Severity
-                            from dbo.Ticket;";
 
-            return SqlDataAccess.LoadData<TicketModel>(sql);
+        public static List<TicketModel> FindTicket(int Id)
+        {
+            int data = Id;
+            
+            string sql = $"select * from dbo.Ticket where Id = {data}";
+
+            return SqlDataAccess.FindData<TicketModel>(sql);
         }
     }
 }

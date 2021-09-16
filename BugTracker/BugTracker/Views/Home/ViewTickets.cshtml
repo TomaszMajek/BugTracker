@@ -96,9 +96,14 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="...">
-                        <form method="post" asp-action="EditTicket">
+                        <form method="post">
+                            <input type="submit" value="Edit" class="btn btn-outline-secondary btn-sm py-0" style="font-size: 0.75em;" />
+                        </form>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <form method="post" asp-action="DetailsBug">
                             <input type="hidden" name="Id" asp-for="@item.Id" />
-                            <input type="submit" value="Edit" class="btn btn-outline-secondary btn-sm py-0" style="font-size: 0.75em;"/>
+                            <input type="submit" value="Details" class="btn btn-primary btn-sm py-0" style="font-size: 0.75em;" />
                         </form>
                     </div>
                     <div class="btn-group" role="group" aria-label="...">

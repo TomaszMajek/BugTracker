@@ -1,0 +1,79 @@
+﻿@model BugTracker.Models.TicketModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row pt-4 justify-content-between">
+    <div class="d-flex bd-highlight">
+        <div class="flex-grow-1 bd-highlight">
+            <h3>Details for ticket</h3>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div>
+    <dl class="row">
+        @* id commented *@
+        @*
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>*@
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BugName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BugName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reporter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reporter)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            <span class="color_change_status">
+                @Html.DisplayFor(model => model.Status)
+            </span>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Deadline)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deadline)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Severity)
+        </dt>
+        <dd class="col-sm-10">
+            <span class="color_change_severity">
+                @Html.DisplayFor(model => model.Severity)
+            </span>
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="ViewTickets">Back to List</a>
+</div>
