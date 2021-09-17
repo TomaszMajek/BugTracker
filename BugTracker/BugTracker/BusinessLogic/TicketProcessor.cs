@@ -58,5 +58,26 @@ namespace BugTracker.BusinessLogic
 
             return SqlDataAccess.FindData<TicketModel>(sql);
         }
+
+        public static int EditTicket(int id, string bugName, string description,
+            string reporter, System.DateTime? created, System.DateTime? deadline,
+            string status, string severity)
+        {
+            TicketModel data = new TicketModel
+            {
+                Id = id,
+                BugName = bugName,
+                Description = description,
+                Reporter = reporter,
+                Created = created,
+                Deadline = deadline,
+                Status = status,
+                Severity = severity
+            };
+
+            string sql = @"update dbo.Ticket set BugName = @BugName, Description = @Description, Reporter = @Reporter, Created = @Created, Deadline = @Deadline, Status = @Status, Severity = @Severity where Id = @id";
+
+            return SqlDataAccess.SaveData(sql, data);
+        }
     }
 }

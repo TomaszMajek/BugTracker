@@ -111,6 +111,41 @@ namespace BugTracker.Controllers
 
             return View(ticket);
         }
+
+        public ActionResult EditBug(int Id)
+        {
+            var data = TicketProcessor.FindTicket(Id);
+            TicketModel ticket = new TicketModel();
+
+            ticket.Id = data[0].Id;
+            ticket.BugName = data[0].BugName;
+            ticket.Description = data[0].Description;
+            ticket.Reporter = data[0].Reporter;
+            ticket.Created = data[0].Created;
+            ticket.Deadline = data[0].Deadline;
+            ticket.Status = data[0].Status;
+            ticket.Severity = data[0].Severity;
+
+            return View(ticket);
+        }
+
+        [HttpPost]
+        public IActionResult EditSaveBug(TicketModel model)
+        {
+            var data = TicketProcessor.EditTicket(
+                model.Id, 
+                model.BugName, 
+                model.Description,
+                model.Reporter,
+                model.Created,
+                model.Deadline,
+                model.Status,
+                model.Severity
+            );
+
+
+            return RedirectToAction("ViewTickets");
+        }
     }
 }
  
