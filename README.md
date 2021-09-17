@@ -6,7 +6,9 @@
 * Auth0 (Loging and registration will be added soon!)
 * Bootstrap 5
 
-
+What has already been done:
+* CRUD functions (SQL server)
+* simple bootstrap frontend
 
 # Images from web application
 ![alt text](https://github.com/TomaszMajek/BugTracker/blob/master/BugTracker/Tickets%20Tab.png)
