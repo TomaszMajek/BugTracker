@@ -25,3 +25,7 @@ What has already been done:
 ![alt text](https://github.com/TomaszMajek/BugTracker/blob/master/BugTracker/Edit%20ticket.png)
 
 
+
+
+### Data model
+![alt text](https://github.com/TomaszMajek/BugTracker/blob/master/BugTracker/baza.png)
