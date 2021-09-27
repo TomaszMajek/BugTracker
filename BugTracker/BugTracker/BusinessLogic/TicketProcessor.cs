@@ -10,7 +10,7 @@ namespace BugTracker.BusinessLogic
     public static class TicketProcessor
     {
         public static int CreateTicket(string bugName, string description, 
-            string reporter, System.DateTime? created, System.DateTime? deadline, 
+            string reporter, System.DateTime created, System.DateTime deadline, 
             string status, string severity)
         {
             TicketModel data = new TicketModel
@@ -60,7 +60,7 @@ namespace BugTracker.BusinessLogic
         }
 
         public static int EditTicket(int id, string bugName, string description,
-            string reporter, System.DateTime? created, System.DateTime? deadline,
+            string reporter, System.DateTime created, System.DateTime deadline,
             string status, string severity)
         {
             TicketModel data = new TicketModel

@@ -42,12 +42,22 @@ function statusColor() {
 
 
 // Removes seconds (useless) from 'Deadline' column in /Tickets tab
+function removeTime() {
+    var el_3 = document.querySelectorAll(".remove_time");
+
+    for (var j = 0; j < el_3.length; j++) {
+
+        var date = el_3[j].textContent.trim().replace(/&nbsp;/g, '').slice(0, -8);
+        el_3[j].innerHTML = date;
+    }
+}
+
 function removeSeconds() {
-    var el_2 = document.querySelectorAll(".remove_seconds");
+    var el_4 = document.querySelectorAll(".remove_seconds");
 
-    for (var j = 0; j < el_2.length; j++) {
+    for (var j = 0; j < el_4.length; j++) {
 
-        var date = el_2[j].textContent.trim().replace(/&nbsp;/g, '').slice(0, -8);
-        el_2[j].innerHTML = date;
+        var date = el_4[j].textContent.trim().replace(/&nbsp;/g, '').slice(0, -3);
+        el_4[j].innerHTML = date;
     }
 }

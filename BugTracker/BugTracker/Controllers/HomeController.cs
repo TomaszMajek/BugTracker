@@ -21,6 +21,7 @@ namespace BugTracker.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.ActiveMenu = "Index";
             return View();
         }
 
@@ -35,9 +36,16 @@ namespace BugTracker.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Route("dashboard")]
+        public IActionResult Dashboard()
+        {
+            ViewBag.ActiveMenu = "Dashboard";
+            return View();
+        }
+
+        [Route("tickets")]
         public ActionResult ViewTickets()
         {
-            ViewBag.Message = "Tickets List";
             var data = TicketProcessor.LoadTickets();
             List<TicketModel> tickets = new List<TicketModel>();
 
@@ -55,7 +63,7 @@ namespace BugTracker.Controllers
                     Severity = row.Severity
                 });
             }
-
+            ViewBag.ActiveMenu = "Tickets";
             return View(tickets);
         }
 
@@ -80,9 +88,9 @@ namespace BugTracker.Controllers
                     model.Status,
                     model.Severity);
 
+                ViewBag.ActiveMenu = "ViewTickets";
                 return RedirectToAction("ViewTickets"); 
             }
-
             return View();
         }
 
@@ -91,6 +99,7 @@ namespace BugTracker.Controllers
         {
             TicketProcessor.DeleteTicket(Id);
 
+            ViewBag.ActiveMenu = "ViewTickets";
             return RedirectToAction("ViewTickets");
         }
 
@@ -143,7 +152,7 @@ namespace BugTracker.Controllers
                 model.Severity
             );
 
-
+            ViewBag.ActiveMenu = "ViewTickets";
             return RedirectToAction("ViewTickets");
         }
     }

@@ -22,11 +22,11 @@ namespace BugTracker.Models
         public string Reporter { get; set; }
 
         [Display(Name = "Created")]
-        public DateTime? Created { get; set; }
+        public DateTime Created { get; set; }
 
         [Display(Name = "Deadline")]
         [Required(ErrorMessage = "You need to write by when the problem should be solved.")]
-        public DateTime? Deadline { get; set; }
+        public DateTime Deadline { get; set; }
 
         [Display(Name = "Status")]
         [Required(ErrorMessage = "You must select status. Is the problem in progress already or maybe almost solved?")]
