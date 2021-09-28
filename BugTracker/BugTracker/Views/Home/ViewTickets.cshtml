@@ -12,7 +12,7 @@
         </div>
 
         <div class="px-2 bd-highlight">
-            <a role="button" class="btn btn-primary" asp-action="AddBug">Add Ticket</a>
+            <a role="button" class="btn btn-primary" asp-controller="Tickets" asp-action="AddBug">Add Ticket</a>
         </div>
 
         <div class="bd-highlight">
@@ -98,19 +98,19 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="...">
-                        <form method="post" asp-action="EditBug">
+                        <form method="post" asp-controller="Home" asp-action="EditBug">
                             <input type="hidden" name="Id" asp-for="@item.Id" />
                             <input type="submit" value="Edit" class="btn btn-outline-secondary btn-sm py-0" style="font-size: 0.75em;" />
                         </form>
                     </div>
                     <div class="btn-group" role="group" aria-label="...">
-                        <form method="post" asp-action="DetailsBug">
+                        <form method="post" asp-controller="Home" asp-action="DetailsBug">
                             <input type="hidden" name="Id" asp-for="@item.Id" />
                             <input type="submit" value="Details" class="btn btn-outline-secondary btn-sm py-0" style="font-size: 0.75em;" />
                         </form>
                     </div>
                     <div class="btn-group" role="group" aria-label="...">
-                        <form method="post" asp-action="DeleteBug">
+                        <form method="post" asp-controller="Home" asp-action="DeleteBug">
                             <input type="hidden" name="Id" asp-for="@item.Id" />
                             <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm py-0" style="font-size: 0.75em;" />
                         </form>

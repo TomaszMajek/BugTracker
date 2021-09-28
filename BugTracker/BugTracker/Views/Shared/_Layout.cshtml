@@ -26,13 +26,13 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a asp-action="Index" class="nav_logo"> <i class='bx bx-bug nav_logo-icon'></i> <span class="nav_logo-name">Bug Tracker</span> </a>
+                <a asp-controller="Home" asp-action="Index" class="nav_logo"> <i class='bx bx-bug nav_logo-icon'></i> <span class="nav_logo-name">Bug Tracker</span> </a>
                 <div class="nav_list">
-                    <a asp-action="Dashboard" class="nav_link" id="Dashboard">
+                    <a asp-controller="Home" asp-action="Dashboard" class="nav_link" id="Dashboard">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
-                    <a asp-action="ViewTickets" class="nav_link" id="Tickets">
+                    <a asp-controller="Home" asp-action="ViewTickets" class="nav_link" id="Tickets">
                         <i class='bx bx-edit-alt nav_icon'></i>
                         <span class="nav_name">Tickets</span>
                     </a>
@@ -40,7 +40,7 @@
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">Users</span>
                     </a>
-                    <a href="#" class="nav_link" id="Projects">
+                    <a asp-controller="Projects" asp-action="ViewProjects" class="nav_link" id="Projects">
                         <i class='bx bx-layer nav_icon'></i>
                         <span class="nav_name">Projects</span>
                     </a>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BugTracker.Models.ProjectModel>
+
+@{
+    ViewData["Title"] = "ViewProjects";
+}
+
+<div class="row pt-4 justify-content-between">
+    <div class="d-flex bd-highlight">
+
+        <div class="flex-grow-1 bd-highlight">
+            <h3>Projects</h3>
+        </div>
+
+        <div class="px-2 bd-highlight">
+            <a role="button" class="btn btn-primary" asp-action="AddProject">Add project</a>
+        </div>
+
+        <div class="bd-highlight">
+            <button type="button" class="btn btn-secondary">Info</button>
+        </div>
+
+    </div>
+</div>
+
+<hr />
+
+<div class="container-fluid pt-4">
+    <table class="table table-hover table-borderless">
+        <thead class="table-light">
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.ProjectId)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.ProjectId)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

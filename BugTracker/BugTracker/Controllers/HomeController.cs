@@ -155,6 +155,8 @@ namespace BugTracker.Controllers
             ViewBag.ActiveMenu = "ViewTickets";
             return RedirectToAction("ViewTickets");
         }
+
+
     }
 }
  
