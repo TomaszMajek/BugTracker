@@ -13,16 +13,18 @@ namespace BugTracker.Controllers
         [Route("projects")]
         public ActionResult ViewProjects()
         {
-            var data = ProjectProcessor.LoadTickets();
-            List<ProjectModel> projects = new List<ProjectModel>();
+            var data = ProjectProcessor.LoadProjects();
+            List<ProjectsAllDataModel> projects = new List<ProjectsAllDataModel>();
 
             foreach (var row in data)
             {
-                projects.Add(new ProjectModel
+                projects.Add(new ProjectsAllDataModel
                 {
                     ProjectId = row.ProjectId,
                     ProjectName = row.ProjectName,
-                    Description = row.Description
+                    Description = row.Description,
+                    TicketsNumber = row.TicketsNumber,
+                    WorkersNumber = row.WorkersNumber
                 });
             }
             ViewBag.ActiveMenu = "Projects";

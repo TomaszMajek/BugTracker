@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BugTracker.Models.ProjectModel>
+﻿@model IEnumerable<BugTracker.Models.ProjectsAllDataModel>
 
 @{
     ViewData["Title"] = "ViewProjects";
@@ -29,13 +29,19 @@
         <thead class="table-light">
             <tr>
                 @*<th>
-                        @Html.DisplayNameFor(model => model.ProjectId)
-                    </th>*@
+            @Html.DisplayNameFor(model => model.ProjectId)
+        </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.ProjectName)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TicketsNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WorkersNumber)
                 </th>
                 <th></th>
             </tr>
@@ -43,22 +49,28 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.ProjectId)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProjectName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
+            <tr>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.ProjectId)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketsNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkersNumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
             }
         </tbody>
     </table>
