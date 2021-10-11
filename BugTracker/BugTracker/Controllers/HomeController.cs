@@ -44,9 +44,10 @@ namespace BugTracker.Controllers
         }
 
         [Route("tickets")]
-        public ActionResult ViewTickets()
+        public ActionResult ViewTickets(int projectId)
         {
-            var data = TicketProcessor.LoadTickets();
+            int projectIdAction = 1;
+            var data = TicketProcessor.LoadTickets(projectIdAction);
             List<TicketModel> tickets = new List<TicketModel>();
 
             foreach (var row in data)
@@ -86,7 +87,8 @@ namespace BugTracker.Controllers
                     model.Created, 
                     model.Deadline, 
                     model.Status,
-                    model.Severity);
+                    model.Severity,
+                    model.ProjectId);
 
                 ViewBag.ActiveMenu = "ViewTickets";
                 return RedirectToAction("ViewTickets"); 

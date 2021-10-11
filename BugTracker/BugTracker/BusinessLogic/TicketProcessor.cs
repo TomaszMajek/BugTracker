@@ -11,7 +11,7 @@ namespace BugTracker.BusinessLogic
     {
         public static int CreateTicket(string bugName, string description, 
             string reporter, System.DateTime created, System.DateTime deadline, 
-            string status, string severity)
+            string status, string severity, string projectId)
         {
             TicketModel data = new TicketModel
             {
@@ -21,20 +21,22 @@ namespace BugTracker.BusinessLogic
                 Created = created,
                 Deadline = deadline,
                 Status = status,
-                Severity = severity
+                Severity = severity,
+                ProjectId = projectId
             };
 
-            string sql = @"insert into dbo.Ticket (BugName, Description, Reporter, Created, Deadline, Status, Severity)
-                            values (@BugName, @Description, @Reporter, @Created, @Deadline, @Status, @Severity);";
+            string sql = @"insert into dbo.Ticket (BugName, Description, Reporter, Created, Deadline, Status, Severity, ProjectId)
+                            values (@BugName, @Description, @Reporter, @Created, @Deadline, @Status, @Severity, @ProjectId);";
 
             return SqlDataAccess.SaveData(sql, data);
         }
 
 
-        public static List<TicketModel> LoadTickets()
+        public static List<TicketModel> LoadTickets(int ProjectId)
         {
-            string sql = @"select Id, BugName, Description, Reporter, Created, Deadline, Status, Severity
-                            from dbo.Ticket;";
+            int data = ProjectId;
+
+            string sql = $"select Id, BugName, Description, Reporter, Created, Deadline, Status, Severity from dbo.Ticket where ProjectId = {data};";
 
             return SqlDataAccess.LoadData<TicketModel>(sql);
         }

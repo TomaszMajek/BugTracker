@@ -35,5 +35,9 @@ namespace BugTracker.Models
         [Display(Name = "Severity")]
         [Required(ErrorMessage = "You have to set prirority.")]
         public string Severity { get; set; }
+
+        [Display(Name = "Project name")]
+        [Required(ErrorMessage = "You must choose project.")]
+        public string ProjectId { get; set; }
     }
 }

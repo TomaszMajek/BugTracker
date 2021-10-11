@@ -1,6 +1,7 @@
 ﻿using BugTracker.BusinessLogic;
 using BugTracker.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,16 @@ namespace BugTracker.Controllers
                 ViewBag.ActiveMenu = "Projects";
                 return RedirectToAction("ViewProjects");
             }
+            return View();
+        }
+
+        public ViewResult _ChangeProject()
+        {
+            var data = ProjectProcessor.GetProjectsNames();
+            var dictionary = data.ToDictionary(x => x.ProjectId, x => x.ProjectName);
+
+            ViewBag.ProjectName = new SelectList(dictionary, "Key", "Value");
+
             return View();
         }
     }

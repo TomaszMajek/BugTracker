@@ -23,11 +23,19 @@ namespace BugTracker.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
+
         public static List<ProjectsAllDataModel> LoadProjects()
         {
             string sql = @"select ProjectId, ProjectName, Description, TicketsNumber, WorkersNumber from dbo.Projects;";
 
             return SqlDataAccess.LoadData<ProjectsAllDataModel>(sql);
+        }
+
+        public static List<ProjectModel> GetProjectsNames()
+        {
+            string sql = @"select ProjectId, ProjectName from dbo.Projects;";
+
+            return SqlDataAccess.LoadProjectData<ProjectModel>(sql);
         }
     }
 }

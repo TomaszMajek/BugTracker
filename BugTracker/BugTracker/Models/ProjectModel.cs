@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,6 +19,5 @@ namespace BugTracker.Models
         [Display(Name = "Description")]
         [Required(ErrorMessage = "Write something about the project.")]
         public string Description { get; set; }
-
     }
 }

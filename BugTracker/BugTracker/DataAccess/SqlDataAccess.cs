@@ -37,6 +37,14 @@ namespace BugTracker.DataAccess
             }
         }
 
+        public static List<T> LoadProjectData<T>(string sql)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql).ToList();
+            }
+        }
+
         public static int SaveData<T>(string sql, T data)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
