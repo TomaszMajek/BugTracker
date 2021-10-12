@@ -15,16 +15,23 @@ namespace BugTracker.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        public static class GlobalVariables
+        {
+            public static int selectedProject { get; set; }
+        }
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
+
 
         public IActionResult Index()
         {
             ViewBag.ActiveMenu = "Index";
             return View();
         }
+
 
         public IActionResult Privacy()
         {
@@ -50,16 +57,15 @@ namespace BugTracker.Controllers
             var projectData = ProjectProcessor.GetProjectsNames();
             try
             {
-                var selectedProject = Int16.Parse(Request.Form["id"]);
-                projectId = selectedProject;
+                GlobalVariables.selectedProject = Int16.Parse(Request.Form["id"]);
+                projectId = GlobalVariables.selectedProject;
             }
             catch (Exception e)
             {
 
             }
-
+            
             var dictionary = projectData.ToDictionary(x => x.ProjectId, x => x.ProjectName);
-
             var data = TicketProcessor.LoadTickets(projectId);
 
             List<TicketModel> tickets = new List<TicketModel>();
@@ -78,7 +84,12 @@ namespace BugTracker.Controllers
                     Severity = row.Severity
                 });
             }
-            ViewBag.ProjectName = new SelectList(dictionary, "Key", "Value");
+
+            // Keeping selected value after submiting (changing project)
+            var selectedList = new SelectList(dictionary, "Key", "Value", projectId);
+            ViewBag.ActiveMenu = "Tickets";
+            ViewBag.ProjectName = selectedList;
+            
             return View(tickets);
         }
 
@@ -136,6 +147,7 @@ namespace BugTracker.Controllers
 
             return View(ticket);
         }
+
 
         public ActionResult EditBug(int Id)
         {

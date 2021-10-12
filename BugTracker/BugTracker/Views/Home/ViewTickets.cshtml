@@ -24,13 +24,17 @@
 
 <hr />
 
-<div class="col-md-3">
-    @using (Html.BeginForm())
-    {
-        @Html.DropDownList("id", ((SelectList)ViewBag.ProjectName), "- Select project -", new { @class = "form-select" })
-        <input type="submit" value="Choose this project" asp-action="ViewTickets" />
-    }
-</div>
+@using (Html.BeginForm())
+{
+    <div class="row" >
+        <div class="col-md-3">
+            @Html.DropDownList("id", ((SelectList)ViewBag.ProjectName), "- Select project -", new { @class = "form-select" })
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" type="submit" asp-action="ViewTickets">Choose this project</button>
+        </div>
+    </div>
+}
 
 
 <div class="container-fluid pt-4">
