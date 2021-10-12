@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BugTracker.Models.TicketAndProjectModel>
+﻿@model IEnumerable<BugTracker.Models.TicketModel>
 
 @{
     ViewData["Title"] = "View Tickets";
@@ -25,7 +25,11 @@
 <hr />
 
 <div class="col-md-3">
-    <partial name="~/Views/Projects/_ChangeProject.cshtml" />
+    @using (Html.BeginForm())
+    {
+        @Html.DropDownList("id", ((SelectList)ViewBag.ProjectName), "- Select project -", new { @class = "form-select" })
+        <input type="submit" value="Choose this project" asp-action="ViewTickets" />
+    }
 </div>
 
 

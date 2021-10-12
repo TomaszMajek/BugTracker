@@ -52,15 +52,5 @@ namespace BugTracker.Controllers
             }
             return View();
         }
-
-        public ViewResult _ChangeProject()
-        {
-            var data = ProjectProcessor.GetProjectsNames();
-            var dictionary = data.ToDictionary(x => x.ProjectId, x => x.ProjectName);
-
-            ViewBag.ProjectName = new SelectList(dictionary, "Key", "Value");
-
-            return View();
-        }
     }
 }

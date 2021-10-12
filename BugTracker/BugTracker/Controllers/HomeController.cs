@@ -1,6 +1,7 @@
 ﻿using BugTracker.BusinessLogic;
 using BugTracker.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -46,8 +47,21 @@ namespace BugTracker.Controllers
         [Route("tickets")]
         public ActionResult ViewTickets(int projectId)
         {
-            int projectIdAction = 1;
-            var data = TicketProcessor.LoadTickets(projectIdAction);
+            var projectData = ProjectProcessor.GetProjectsNames();
+            try
+            {
+                var selectedProject = Int16.Parse(Request.Form["id"]);
+                projectId = selectedProject;
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            var dictionary = projectData.ToDictionary(x => x.ProjectId, x => x.ProjectName);
+
+            var data = TicketProcessor.LoadTickets(projectId);
+
             List<TicketModel> tickets = new List<TicketModel>();
 
             foreach (var row in data)
@@ -64,7 +78,7 @@ namespace BugTracker.Controllers
                     Severity = row.Severity
                 });
             }
-            ViewBag.ActiveMenu = "Tickets";
+            ViewBag.ProjectName = new SelectList(dictionary, "Key", "Value");
             return View(tickets);
         }
 
