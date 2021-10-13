@@ -15,9 +15,11 @@ namespace BugTracker.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public static class GlobalVariables
+        public class GlobalVariables
         {
             public static int selectedProject { get; set; }
+            private static readonly Dictionary<int, int> justToInit = new Dictionary<int, int>();
+            public static SelectList selectedList { get; set; } = new SelectList(justToInit, "Key", "Value", 0);
         }
 
         public HomeController(ILogger<HomeController> logger)
@@ -55,10 +57,20 @@ namespace BugTracker.Controllers
         public ActionResult ViewTickets(int projectId)
         {
             var projectData = ProjectProcessor.GetProjectsNames();
+
+            // solves problem of reseting "choosing project" dropdownlist after reload
             try
             {
-                GlobalVariables.selectedProject = Int16.Parse(Request.Form["id"]);
-                projectId = GlobalVariables.selectedProject;
+                if (GlobalVariables.selectedProject == 0 && Convert.ToInt16(GlobalVariables.selectedList.SelectedValue) > 0)
+                {
+                    projectId = Convert.ToInt16(GlobalVariables.selectedList.SelectedValue);
+                }
+                else
+                {
+                    projectId = GlobalVariables.selectedProject;
+                    GlobalVariables.selectedProject = Int16.Parse(Request.Form["id"]);
+                    projectId = GlobalVariables.selectedProject;
+                }
             }
             catch (Exception e)
             {
@@ -86,9 +98,9 @@ namespace BugTracker.Controllers
             }
 
             // Keeping selected value after submiting (changing project)
-            var selectedList = new SelectList(dictionary, "Key", "Value", projectId);
+            GlobalVariables.selectedList = new SelectList(dictionary, "Key", "Value", GlobalVariables.selectedProject);
             ViewBag.ActiveMenu = "Tickets";
-            ViewBag.ProjectName = selectedList;
+            ViewBag.ProjectName = GlobalVariables.selectedList;
             
             return View(tickets);
         }
