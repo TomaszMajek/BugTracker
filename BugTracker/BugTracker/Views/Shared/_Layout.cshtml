@@ -18,7 +18,16 @@
     @* HEADER *@
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+        }
+        else
+        {
+            <div>
+                <a id="Login" asp-controller="Home" asp-action="Login">Login</a>
+            </div>
+        }
     </header>
 
 
@@ -28,28 +37,35 @@
             <div>
                 <a asp-controller="Home" asp-action="Index" class="nav_logo"> <i class='bx bx-bug nav_logo-icon'></i> <span class="nav_logo-name">Bug Tracker</span> </a>
                 <div class="nav_list">
-                    <a asp-controller="Home" asp-action="Dashboard" class="nav_link" id="Dashboard">
-                        <i class='bx bx-grid-alt nav_icon'></i>
-                        <span class="nav_name">Dashboard</span>
-                    </a>
-                    <a asp-controller="Home" asp-action="ViewTickets" class="nav_link" id="Tickets">
-                        <i class='bx bx-edit-alt nav_icon'></i>
-                        <span class="nav_name">Tickets</span>
-                    </a>
-                    <a href="#" class="nav_link" id="Users">
-                        <i class='bx bx-user nav_icon'></i>
-                        <span class="nav_name">Users</span>
-                    </a>
-                    <a asp-controller="Projects" asp-action="ViewProjects" class="nav_link" id="Projects">
-                        <i class='bx bx-layer nav_icon'></i>
-                        <span class="nav_name">Projects</span>
-                    </a>
-                    <a href="#" class="nav_link" id="Stats">
-                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
-                        <span class="nav_name">Stats</span>
-                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Home" asp-action="Dashboard" class="nav_link" id="Dashboard">
+                            <i class='bx bx-grid-alt nav_icon'></i>
+                            <span class="nav_name">Dashboard</span>
+                        </a>
+                        <a asp-controller="Home" asp-action="ViewTickets" class="nav_link" id="Tickets">
+                            <i class='bx bx-edit-alt nav_icon'></i>
+                            <span class="nav_name">Tickets</span>
+                        </a>
+                        <a href="#" class="nav_link" id="Users">
+                            <i class='bx bx-user nav_icon'></i>
+                            <span class="nav_name">Users</span>
+                        </a>
+                        <a asp-controller="Projects" asp-action="ViewProjects" class="nav_link" id="Projects">
+                            <i class='bx bx-layer nav_icon'></i>
+                            <span class="nav_name">Projects</span>
+                        </a>
+                        <a href="#" class="nav_link" id="Stats">
+                            <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                            <span class="nav_name">Stats</span>
+                        </a>
+                    }
                 </div>
-            </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Home" asp-action="Logout" id="Logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+            }
         </nav>
     </div>
 

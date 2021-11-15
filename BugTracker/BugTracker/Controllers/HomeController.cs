@@ -1,5 +1,7 @@
 ﻿using BugTracker.BusinessLogic;
 using BugTracker.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -27,13 +29,26 @@ namespace BugTracker.Controllers
             _logger = logger;
         }
 
-
         public IActionResult Index()
         {
             ViewBag.ActiveMenu = "Index";
             return View();
         }
 
+        public async Task Login(string returnUrl = "/")
+        {
+            await HttpContext.ChallengeAsync("Auth0", new AuthenticationProperties() { RedirectUri = returnUrl });
+        }
+
+        public async Task Logout()
+        {
+            await HttpContext.SignOutAsync("Auth0", new AuthenticationProperties()
+            {
+                RedirectUri = Url.Action("Index", "Home")
+            });
+
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
 
         public IActionResult Privacy()
         {
