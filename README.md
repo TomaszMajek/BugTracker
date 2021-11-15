@@ -3,7 +3,7 @@
 * C#
 * ASP.NET
 * MVC model
-* Auth0 (Loging and registration will be added soon!)
+* Auth0
 * Bootstrap 5
 
 What has already been done:
