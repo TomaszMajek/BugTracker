@@ -11,7 +11,7 @@ What has already been done:
 * simple bootstrap frontend
 
 # Images from web application
-![alt text](https://github.com/TomaszMajek/BugTracker/blob/master/BugTracker/Tickets%20Tab.png)
+![alt text](https://github.com/TomaszMajek/BugTracker/blob/master/BugTracker/TicketsTab_2.0.png)
 
 
 
