@@ -9,6 +9,7 @@
 What has already been done:
 * CRUD functions (SQL server)
 * simple bootstrap frontend
+* user authentication with Auth0 (but still working on profiles and permissions) 
 
 # Images from web application
 ![alt text](https://github.com/TomaszMajek/BugTracker/blob/master/BugTracker/TicketsTab_2.0.png)
